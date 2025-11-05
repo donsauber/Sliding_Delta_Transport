@@ -17,7 +17,7 @@ SDT treats data as a *living stream*, not a sequence of disposable packets. Its 
 
 1. **Sliding Window Continuity** – Every sender keeps a rolling history of recent frames (typically 1–3 s).
 
-2. **Delta Recovery** – Missing packets are not resent directly; the sender emits compact deltas summarizing the lost data.
+2. **Delta Recovery** – Previous packets are compressed and sent along with current live stream without knowing if anything is missing. These are called Deltas. If the receiving device doesn't get some of the packets in the live stream it can check the Deltas for the missing packets. Then it reconstructs the stream by using human speech pauses to adjust the speed and catch back up.  
 
 3. **Adaptive Redundancy** – Redundancy scales automatically based on observed loss, jitter, and round-trip time.
 
